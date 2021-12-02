@@ -8,7 +8,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.set("view engine","ejs")
-mongoose.connect('mongodb://localhost/clean-blog-test-db')
+mongoose.connect('mongodb://localhost/cleann-blog-test-db')
 
 const myLogger=(req,res,next)=>{
     console.log("Middleware 1");
