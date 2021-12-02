@@ -8,7 +8,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.set("view engine","ejs")
-mongoose.connect('mongodb://localhost/cleann-blog-test-db')
+mongoose.connect('mongodb://localhost/clean-blog-test-db')
 
 const myLogger=(req,res,next)=>{
     console.log("Middleware 1");
@@ -22,8 +22,8 @@ app.get('/', async (req, res)=> {
 app.get('/about',  (req, res)=> {
   res.render("about")
 })
-app.get('/post',  (req, res)=> {
-  res.render("post")
+app.get('/blog',  (req, res)=> {
+  res.render("blog")
 })
 app.get('/add', (req, res)=> {
   res.render("add_post")
@@ -32,6 +32,10 @@ app.post('/blogs', async(req, res) =>{
   console.log(req.body);
   await Blog.create(req.body)
   res.redirect('/');
+});
+app.get('/blogs/:id', async(req, res) => {
+  const blog=await Blog.findById(req.params.id);
+  res.render("blog",{blog});
 });
 
 app.listen(3000)
