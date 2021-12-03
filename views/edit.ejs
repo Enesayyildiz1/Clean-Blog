@@ -18,31 +18,25 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <form method="POST" action="/blogs"  encType="multipart/form-data">
+        <form method="POST" action="/blogs/<%=blog._id%>?_method=PUT"  encType="multipart/form-data">
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Post Title</label>
-              <input type="text" class="form-control" name="title" placeholder="Blog Title" id="name" required data-validation-required-message="Please enter blog title.">
+              <input type="text" class="form-control" value="<%= blog.title%>" name="title" placeholder="Blog Title" id="name" required data-validation-required-message="Please enter blog title.">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Post Blog</label>
-              <textarea rows="5" name="blog" class="form-control" placeholder="Blog" id="blog" required data-validation-required-message="Please enter blog."></textarea>
+              <textarea rows="5" name="blog" class="form-control" placeholder="Blog" id="blog" required data-validation-required-message="Please enter blog."><%= blog.blog %> </textarea>
               <p class="help-block text-danger"></p>
             </div>
           </div>
-          <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-              <label>Post Image</label>
-              <input  type="file"  name="image" class="form-control" placeholder="Blog Image"  />
-             
-            </div>
-          </div>
+         
           <br>
-          <div id="success"></div>
-          <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+          
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Update</button>
         </form>
       </div>
     </div>
