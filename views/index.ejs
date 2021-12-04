@@ -34,10 +34,30 @@
         <hr>
         <%}%>
         <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-        </div>
-      </div>
+      <!-- <div>
+        <% if (pages > 1) {%>
+          <ul class="nav tm-paging-links">
+            <% for (i=1;i<=pages;i++) { %>
+              <li class="nav-item active"><a href="/?page=<%=i%>" class="nav-link tm-paging-link"><%=i%></a></li>
+            <% } %>
+          </ul>
+        <%}%>
+      </div>--> 
+      <% if (pages > 1) {%>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+         
+          <% for (i=1;i<=pages;i++) { %>
+            <%if(i==current){%>
+              <li class="page-item active"><a class="page-link" href="/?page=<%=i%>"><%=i%></a></li>
+            <%}else{%>
+              <li class="page-item"><a class="page-link" href="/?page=<%=i%>"><%=i%></a></li>
+            <% } %>
+          <% } %>
+          
+        </ul>
+      </nav>
+      <%}%>
     </div>
   </div>
 

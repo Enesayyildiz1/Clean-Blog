@@ -3,8 +3,24 @@ const Blog = require('../models/Blog');
 const fs = require('fs');
 
 exports.getAllBlogs= async (req, res)=> {
-    const blogs=await Blog.find({}).sort("-dateCreated");
-    res.render("index",{blogs});
+
+    const page=req.query.page || 1;
+    const blogsPerPage=3;
+
+    const totalBlogs=await Blog.find().countDocuments();
+
+    const blogs=await Blog.find({})
+    .sort('-dateCreated')
+    .skip((page-1)*blogsPerPage)
+    .limit(blogsPerPage);
+   
+    res.render("index",
+    {
+      blogs:blogs,
+      current:page,
+      pages:Math.ceil(totalBlogs/blogsPerPage)
+    }
+    );
 };
 exports.getBlogById=async(req, res) => {
     const blog=await Blog.findById(req.params.id);
